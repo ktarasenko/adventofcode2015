@@ -36,24 +36,27 @@ object Day7 {
         return f
     }
 
-}
-
-private fun Int.not(): Int {
-    val bits = this.toString(2).takeLast(16).padStart(16, '0').map { if (it == '1') '0' else '1' }.joinToString(separator = "")
-    return bits.toInt(2)
-}
 
 
-private fun Int.rightshift(amount: Int): Int {
-    val shift = amount % 16
-    val bits = this.toString(2).takeLast(16)
+    private fun Int.not(): Int {
+        val bits = this.toString(2).takeLast(16).padStart(16, '0').map { if (it == '1') '0' else '1' }.joinToString(separator = "")
+        return bits.toInt(2)
+    }
 
-    return ("0".repeat(shift) + bits.dropLast(shift)).take(16).toInt(2)
-}
 
-private fun Int.leftshift(amount: Int): Int {
-    val shift = amount % 16
-    val bits = this.toString(2)
+    private fun Int.rightshift(amount: Int): Int {
+        val shift = amount % 16
+        val bits = this.toString(2).takeLast(16)
 
-    return (bits + "0".repeat(shift).takeLast(16)).toInt(2)
+        return ("0".repeat(shift) + bits.dropLast(shift)).take(16).toInt(2)
+    }
+
+    private fun Int.leftshift(amount: Int): Int {
+        val shift = amount % 16
+        val bits = this.toString(2)
+
+        return (bits + "0".repeat(shift).takeLast(16)).toInt(2)
+    }
+
+
 }
